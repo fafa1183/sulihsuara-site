@@ -14,13 +14,15 @@
   body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
   a{color:var(--accent)}
   .wrap{max-width:960px;margin:0 auto;padding:0 20px}
-  header{padding:72px 0 48px;text-align:center;border-bottom:1px solid var(--line)}
-  .logo{font-size:15px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
-  h1{font-size:44px;line-height:1.15;font-weight:800}
+  .brand{display:flex;align-items:center;gap:12px;justify-content:center}
+  .brand .name{font-size:26px;font-weight:800;letter-spacing:.5px}
+  .brand .name span{color:var(--accent)}
+  header{padding:56px 0 48px;text-align:center;border-bottom:1px solid var(--line)}
+  h1{font-size:42px;line-height:1.15;font-weight:800;margin-top:26px}
   h1 span{color:var(--accent)}
   .tagline{margin:18px auto 0;max-width:640px;color:var(--muted);font-size:18px}
   .cta{margin-top:30px}
-  .btn{display:inline-block;background:var(--accent);color:#14100a;font-weight:700;padding:13px 28px;border-radius:10px;text-decoration:none}
+  .btn{display:inline-block;background:var(--accent);color:#14100a;font-weight:700;padding:13px 28px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-size:16px}
   .btn:hover{background:var(--accent2)}
   section{padding:52px 0;border-bottom:1px solid var(--line)}
   h2{font-size:27px;margin-bottom:10px}
@@ -39,10 +41,32 @@
   .notes li{margin-left:20px;padding:3px 0}
   .demo{text-align:center}
   video{width:300px;max-width:80vw;border-radius:16px;border:1px solid var(--line);background:#000}
+  .stills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:8px}
+  .still{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .still img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover}
+  .still p{padding:12px 14px;color:var(--muted);font-size:14px}
+  .still p b{color:var(--text);display:block;font-size:15px;margin-bottom:2px}
+  .subs{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-top:18px}
+  .subs h3{font-size:18px;margin-bottom:12px}
+  .pair{padding:10px 0;border-top:1px dashed var(--line)}
+  .pair:first-of-type{border-top:0}
+  .pair .en{color:var(--muted);font-size:14px}
+  .pair .id{font-size:16px}
+  .pair .lbl{font-size:11px;letter-spacing:1.5px;color:var(--accent);text-transform:uppercase}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:6px 14px;font-size:14px;color:var(--muted)}
   .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
   .step{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
   .step b{color:var(--accent);display:block;margin-bottom:6px}
   .step p{color:var(--muted);font-size:15px}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:700;font-size:16px}
+  details p{color:var(--muted);font-size:15px;margin-top:8px}
+  form{display:grid;gap:14px;max-width:560px}
+  label{font-size:14px;color:var(--muted);display:block;margin-bottom:5px}
+  input,textarea,select{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--text);padding:11px 13px;font-size:15px;font-family:inherit}
+  input:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+  #form-status{font-size:15px;min-height:24px}
   footer{padding:42px 0 54px;text-align:center;color:var(--muted);font-size:14px}
   footer .mail{font-size:18px}
 </style>
@@ -50,10 +74,13 @@
 <body>
 <header>
   <div class="wrap">
-    <div class="logo">SulihSuara Studio</div>
+    <div class="brand">
+      <svg width="44" height="44" viewBox="0 0 48 48" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="11" fill="#f0a840"/><rect x="13" y="19" width="4" height="10" rx="2" fill="#14100a"/><rect x="20" y="13" width="4" height="22" rx="2" fill="#14100a"/><rect x="27" y="17" width="4" height="14" rx="2" fill="#14100a"/><rect x="34" y="21" width="4" height="6" rx="2" fill="#14100a"/></svg>
+      <div class="name">Sulih<span>Suara</span></div>
+    </div>
     <h1>Voice Dubbing &amp; <span>Short-Drama Localization</span></h1>
     <p class="tagline">We localize vertical short dramas (60–120 seconds per episode) into Bahasa Indonesia — adapted subtitles, multi-voice AI dubbing with one consistent voice per character across the whole series, and native-speaker quality control on every episode.</p>
-    <div class="cta"><a class="btn" href="mailto:sulihsuara@proton.me">Start with a free test episode</a></div>
+    <div class="cta"><a class="btn" href="#contact">Start with a free test episode</a></div>
   </div>
 </header>
 
@@ -107,7 +134,32 @@
   <div class="wrap demo">
     <h2>Hear the work</h2>
     <p class="sub" style="margin-left:auto;margin-right:auto">A 60-second sample of our multi-voice dubbing — casting, performance direction and mix by SulihSuara.</p>
-    <video controls preload="metadata" src="demo.mp4"></video>
+    <video controls preload="none" poster="demo-poster.jpg" src="demo.mp4"></video>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Inside the work</h2>
+    <p class="sub">Stills from our sample production, and how we treat your material from first frame to delivered master.</p>
+    <div class="stills">
+      <div class="still"><img src="demo-still-1.jpg" alt="Scene from the SulihSuara dubbing sample"><p><b>Multi-voice casting</b>Each character gets one locked voice for the entire series — cast once, consistent for 60+ episodes.</p></div>
+      <div class="still"><img src="demo-still-2.jpg" alt="Narrated scene from the SulihSuara dubbing sample"><p><b>Performance direction</b>Lines are directed for emotion and pacing, not read flat — narration and dialogue sit naturally in the scene.</p></div>
+      <div class="still"><img src="demo-still-3.jpg" alt="Dramatic scene from the SulihSuara dubbing sample"><p><b>Mix &amp; mastering</b>Dub mixed onto your M&amp;E stem and loudness-normalized, so episodes drop straight into your release pipeline.</p></div>
+    </div>
+    <div class="subs">
+      <h3>Adapted, not literal — our subtitle approach</h3>
+      <div class="pair"><div class="lbl">Source line</div><div class="en">“You think this family still needs you?”</div><div class="lbl" style="margin-top:6px">Our Indonesian</div><div class="id">“Kau kira keluarga ini masih butuh kamu?”</div></div>
+      <div class="pair"><div class="lbl">Source line</div><div class="en">“That night, he lost everything. All at once.”</div><div class="lbl" style="margin-top:6px">Our Indonesian</div><div class="id">“Malam itu, ia kehilangan segalanya. Seketika.”</div></div>
+      <div class="pair"><div class="lbl">Source line</div><div class="en">“After all these years, you still owe me an explanation.”</div><div class="lbl" style="margin-top:6px">Our Indonesian</div><div class="id">“Setelah bertahun-tahun, kamu masih berutang penjelasan padaku.”</div></div>
+    </div>
+    <div class="chips">
+      <div class="chip">9:16 vertical master</div>
+      <div class="chip">.srt / .ass subtitles</div>
+      <div class="chip">Loudness-normalized audio</div>
+      <div class="chip">Batches of 15 episodes</div>
+      <div class="chip">Test episode in 2 working days</div>
+    </div>
   </div>
 </section>
 
@@ -127,6 +179,39 @@
   </div>
 </section>
 
+<section>
+  <div class="wrap">
+    <h2>FAQ</h2>
+    <details><summary>What do you need from us to start?</summary><p>Three things: the episode master videos, the music &amp; effects (M&amp;E) stem for each episode, and the script or English subtitles. The M&amp;E stem matters — it lets us replace voices while keeping your music and sound design intact.</p></details>
+    <details><summary>Who owns the rights to the localized version?</summary><p>You do. All work is work-for-hire and transfers to you in full on final payment. We only work on material you own or are licensed to localize, and we ask you to warrant that when you send it.</p></details>
+    <details><summary>How fast can you deliver a full series?</summary><p>A 60-episode series takes 7–14 days per language, delivered in batches of 15 so you can start releasing before the series is complete. A watermarked test episode of your first title is ready within 2 working days.</p></details>
+    <details><summary>What if we don't like the voices?</summary><p>Casting is locked per character only after you approve the test episode — that's exactly what it's for. Every batch also includes one revision round (two on Premium Hybrid), so feedback is applied before the series continues.</p></details>
+    <details><summary>How do we pay?</summary><p>50% deposit to start, balance per delivered batch, by PayPal, Wise or bank transfer. Series of 60+ episodes of a single title get 15% off automatically.</p></details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Start a project</h2>
+    <p class="sub">Tell us about your catalog and we'll reply with next steps for your free test episode. Prefer email? Write to <a href="mailto:sulihsuara@proton.me">sulihsuara@proton.me</a>.</p>
+    <form id="contact-form">
+      <div><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name"></div>
+      <div><label for="f-company">Company / platform</label><input id="f-company" name="company"></div>
+      <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      <div><label for="f-size">Catalog size</label>
+        <select id="f-size" name="catalog_size">
+          <option>1 title (test first)</option>
+          <option>1 series, 60+ episodes</option>
+          <option>Several titles</option>
+          <option>Ongoing catalog</option>
+        </select></div>
+      <div><label for="f-msg">What do you need localized?</label><textarea id="f-msg" name="message" rows="5" required></textarea></div>
+      <div><button class="btn" type="submit">Send inquiry</button></div>
+      <p id="form-status" role="status"></p>
+    </form>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <p class="mail"><a href="mailto:sulihsuara@proton.me">sulihsuara@proton.me</a></p>
@@ -134,5 +219,32 @@
     <p>© 2026 SulihSuara Studio</p>
   </div>
 </footer>
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  var status = document.getElementById('form-status');
+  var data = {
+    name: document.getElementById('f-name').value,
+    company: document.getElementById('f-company').value,
+    email: document.getElementById('f-email').value,
+    catalog_size: document.getElementById('f-size').value,
+    message: document.getElementById('f-msg').value,
+    _subject: 'New SulihSuara inquiry from the website'
+  };
+  status.textContent = 'Sending…';
+  try {
+    var res = await fetch('https://formsubmit.co/ajax/sulihsuara@proton.me', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error('send failed');
+    status.textContent = 'Thank you — your inquiry is on its way. We reply within 2 working days.';
+    e.target.reset();
+  } catch (err) {
+    status.innerHTML = 'The form could not send just now. Please email us directly at <a href="mailto:sulihsuara@proton.me">sulihsuara@proton.me</a>.';
+  }
+});
+</script>
 </body>
 </html>
