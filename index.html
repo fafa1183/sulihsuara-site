@@ -224,21 +224,26 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   e.preventDefault();
   var status = document.getElementById('form-status');
   var data = {
+    access_key: '9f709b42-abe7-45de-951a-d9a1f2f3b1a2',
+    subject: 'New SulihSuara inquiry from the website',
+    from_name: 'SulihSuara website',
     name: document.getElementById('f-name').value,
     company: document.getElementById('f-company').value,
     email: document.getElementById('f-email').value,
+    replyto: document.getElementById('f-email').value,
     catalog_size: document.getElementById('f-size').value,
     message: document.getElementById('f-msg').value,
-    _subject: 'New SulihSuara inquiry from the website'
+    botcheck: false
   };
   status.textContent = 'Sending…';
   try {
-    var res = await fetch('https://formsubmit.co/ajax/sulihsuara@proton.me', {
+    var res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
     });
-    if (!res.ok) throw new Error('send failed');
+    var result = await res.json();
+    if (!res.ok || !result.success) throw new Error('send failed');
     status.textContent = 'Thank you — your inquiry is on its way. We reply within 2 working days.';
     e.target.reset();
   } catch (err) {
